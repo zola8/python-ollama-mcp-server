@@ -2,8 +2,8 @@ import asyncio
 
 from fastmcp import Client
 
-client = Client("http://localhost:8000/mcp")
-
+# client = Client("http://localhost:8000/mcp")
+client = Client("https://excessive-ivory-bobolink.fastmcp.app/mcp")
 
 async def list_tools():
     async with client:

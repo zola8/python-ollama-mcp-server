@@ -1,6 +1,8 @@
 from fastmcp import FastMCP
 from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
 
 mcp = FastMCP("My MCP Server 🚀")
 
@@ -22,4 +24,16 @@ def greet(name: str) -> str:
 # https://gofastmcp.com/getting-started/quickstart
 
 if __name__ == "__main__":
-    mcp.run(transport="http")
+    mcp.run(
+        transport="http",
+        middleware=[
+            Middleware(
+                CORSMiddleware,
+                allow_origins=["*"],
+                allow_credentials=True,
+                allow_methods=["*"],
+                allow_headers=["*"],
+            )
+        ]
+
+    )
